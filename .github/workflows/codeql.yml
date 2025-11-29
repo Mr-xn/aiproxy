@@ -53,14 +53,14 @@ jobs:
       # 第三步：构建 Go 项目（对于 Go 语言，CodeQL 需要观察构建过程来创建数据库）
       # CodeQL 的 'autobuild' 功能通常能自动检测并构建 Go 项目
       # 如果 'autobuild' 失败，你需要在此处替换为项目的手动构建命令
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+      # - name: Autobuild
+      #   uses: github/codeql-action/autobuild@v4
       
       # 如果 Autobuild 失败，可以注释掉上面的 Autobuild 步骤，并使用下面的手动构建步骤：
-      # - name: Build Go application
-      #   run: |
-      #     # 在这里写下你的项目构建命令，例如：
-      #     go build ./...
+      - name: Build Go application
+        run: |
+          # 在这里写下你的项目构建命令，例如：
+          go build -v ./...
 
       # 第四步：执行 CodeQL 分析
       - name: Perform CodeQL Analysis
