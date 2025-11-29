@@ -43,7 +43,7 @@ jobs:
       # 第二步：初始化 CodeQL 分析工具
       - name: Initialize CodeQL
         # 使用官方的 CodeQL 初始化 action
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           # 指定要分析的语言，对于此项目，我们设置为 'go'
           languages: go
@@ -59,10 +59,9 @@ jobs:
       # 如果 Autobuild 失败，可以注释掉上面的 Autobuild 步骤，并使用下面的手动构建步骤：
       - name: Build Go application
         run: |
-          # 在这里写下你的项目构建命令，例如：
-          go build -v ./...
+          go build -v ./core/... ./mcp-servers/... ./openapi-mcp/...
 
       # 第四步：执行 CodeQL 分析
       - name: Perform CodeQL Analysis
         # 使用官方的 CodeQL 分析 action
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
